@@ -6,7 +6,7 @@ import booksRoutes from './routes/books.js' ;
 const app = express();
 
 // Connect to MongoDB using Mongoose
-mongoose.connect('mongodb+srv://Asta:asta123@bookstore.xpbz8lb.mongodb.net/?retryWrites=true&w=majority&appName=bookstore').then (
+mongoose.connect('mongodb+srv://username:password@hostname/databaseName?retryWrites=true&w=majority').then (
     ()=>console.log('Connected to database')).catch((err)=>console.log(err));
 
 // Define the port number on which the server will run

@@ -33,6 +33,26 @@ This project is a Node.js-based RESTful API for a Bookstore, designed to facilit
 ## Database Setup
 - Ensure MongoDB is installed and running locally or use a cloud-based MongoDB service.
 
+#### MongoDB Atlas Connection
+
+This project uses MongoDB Atlas to host its database. To connect your application to MongoDB Atlas, follow these steps:
+
+1. **Setting Up MongoDB Atlas:**
+   If you haven't already, [sign up for MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a new cluster. Detailed instructions can be found on the MongoDB website.
+
+2. **Using the MongoDB Atlas Connection String:**
+   - Obtain your MongoDB Atlas connection string. It should look like this:
+
+     ```plaintext
+     mongodb+srv://username:password@hostname/databaseName?retryWrites=true&w=majority
+     ```
+
+     - **username:** Your MongoDB Atlas username.
+     - **password:** Your MongoDB Atlas password. Handle passwords securely.
+     - **hostname:** MongoDB Atlas hostname including cluster details.
+     - **databaseName:** Optional. Specify the default database name if required.
+     - **Options:** Include any necessary options like `retryWrites=true`.
+
 ## Project Structure
 The folder structure of this application is as follows:
 
