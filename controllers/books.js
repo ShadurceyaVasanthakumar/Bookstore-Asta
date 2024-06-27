@@ -71,7 +71,7 @@ export const createBook = async (req,res)=>{
     
     // Create a new book instance
     const book  = new Book ({
-        id: uuidv4(),
+        book_id: uuidv4(),
         title,
         author,
         published_date: formatDate,

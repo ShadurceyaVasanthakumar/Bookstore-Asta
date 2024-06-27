@@ -30,8 +30,8 @@ const bookSchema = new Schema({
     // ISBN number of the book, required and must be unique
     isbn:{
         type: String,
-        required: true,
-        unique: true
+        required: true
+        
     },
     // Price of the book, required field
     price:{
