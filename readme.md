@@ -12,7 +12,7 @@ This project is a Node.js-based RESTful API for a Bookstore, designed to facilit
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ShadurceyaVasanthakumar/Bookstore-Asta.git Bookstore-Asta
+   git clone https://github.com/ShadurceyaVasanthakumar/Bookstore-Asta.git 
    ```
 
 2. Install dependencies:
@@ -63,7 +63,7 @@ The folder structure of this application is as follows:
 
 ## Book Data Structure
 Each book has the following attributes:
-- `id`: Unique identifier (UUID preferred)
+- `book_id`: Unique identifier (UUID preferred)
 - `title`: Title of the book
 - `author`: Author of the book
 - `published_date`: Date when the book was published (MM-DD-YYYY format)
@@ -104,17 +104,62 @@ Each book has the following attributes:
 
 ## Example Requests
 
-### Retrieve All Books with Pagination and Filtering
+### Retrieve All Books 
 
 ```bash
-GET http://localhost:5000/books?page=1&limit=10&author=J.K.Rowling&published_date=1997-06-26
+GET http://localhost:5000/books/
 ```
 
 ### Retrieve a Specific Book by ID
 
 ```bash
-GET http://localhost:5000/books/60d0fe4f5311236168a109ca
+GET http://localhost:5000/books/176b1bd8-f993-4cf1-abf4-3321e84f488b
 ```
+
+### Search Books by Title
+
+To search for books with the title "Harry Potter":
+```bash
+GET http://localhost:5000/books?search=Harry%20Potter
+```
+- Replace spaces with `%20` in the URL query parameter `search`.
+
+### Filter by Author
+
+To filter books by author "J.K. Rowling":
+
+```bash
+GET http://localhost:5000/books?author=J.K.%20Rowling
+```
+- Replace spaces with `%20` in the URL query parameter `author`.
+
+### Filter by Published Date
+
+To filter books published on "2020-05-02":
+
+```bash
+GET http://localhost:5000/books?published_date=02-05-2020
+```
+- Ensure the date format matches exactly as expected by your API.
+
+### Pagination
+
+For pagination, specify `page` and `limit` parameters:
+
+```bash
+GET http://localhost:5000/books?page=1&limit=10
+```
+- `page=1`: Fetches the first page of results.
+- `limit=10`: Limits the number of results per page to 10.
+Combine Filters:
+
+You can also combine these queries to apply multiple filters at once:
+
+```bash
+GET http://localhost:5000/books?search=Harry%20Potter&author=J.K.%20Rowling&published_date=02-05-2020&page=1&limit=10
+```
+- This example retrieves books with the title "Harry Potter", authored by "J.K. Rowling", published on "2020-05-02", with pagination applied.
+
 
 ### Add a New Book
 
@@ -125,8 +170,8 @@ Content-Type: application/json
 {
   "title": "Harry Potter and the Philosopher's Stone",
   "author": "J.K. Rowling",
-  "published_date": "1997-06-26",
-  "isbn": "9780747532699",
+  "published_date": "05-03-2020",
+  "isbn": "97807475327679",
   "price": 19.99
 }
 ```
@@ -134,7 +179,7 @@ Content-Type: application/json
 ### Update a Book by ID
 
 ```bash
-PUT http://localhost:5000/books/60d0fe4f5311236168a109ca
+PUT http://localhost:5000/books/176b1bd8-f993-4cf1-abf4-3321e84f488b
 Content-Type: application/json
 
 {
@@ -145,7 +190,7 @@ Content-Type: application/json
 ### Delete a Book by ID
 
 ```bash
-DELETE http://localhost:5000/books/60d0fe4f5311236168a109ca
+DELETE http://localhost:5000/books/176b1bd8-f993-4cf1-abf4-3321e84f488b
 ```
 
 ## Conclusion
