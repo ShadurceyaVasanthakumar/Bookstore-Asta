@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 //Schema for the Book model
 const bookSchema = new Schema({
     // Unique identifier for each book, default is a UUID
-    id:{
+    book_id:{
         type: String,
         default: uuidv4,
         unique: true

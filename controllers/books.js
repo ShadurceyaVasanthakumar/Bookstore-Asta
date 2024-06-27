@@ -1,16 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-
 import Book from '../models/books.js';
-
 import bookValidationSchema from '../models/bookValidationSchema.js';
-
 import moment from 'moment';
-
-// let books =[]
 
 // Controller to handle getting a list of books with optional pagination and filtering
 export const getBooks  = async (req,res) =>{
     try{
+
         // Parse query parameters for pagination and filtering
         const page = parseInt(req.query.page) -1 || 0 ;
         const limit = parseInt(req.query.limit) || 5;
@@ -18,7 +14,7 @@ export const getBooks  = async (req,res) =>{
         let author = req.query.author || "All";
         let published_date = req.query.published_date || "All";
 
-         // Construct the query object for MongoDB
+        // Construct the query object for MongoDB
         let query = {
             title : { $regex: search, $options: "i"}
         };
@@ -70,7 +66,7 @@ export const createBook = async (req,res)=>{
     // Destructure the request body
     const {title , author , published_date, isbn, price } = req.body;
 
-     // Format the published_date
+    // Format the published_date
     const formatDate=  moment (published_date,'MM-DD-YYYY').toDate();
     
     // Create a new book instance
@@ -93,11 +89,11 @@ export const createBook = async (req,res)=>{
 
 // Controller to handle retrieving a single book by its ID
 export const getBook = async(req,res ) => {
-    const {id} = req.params;
+    const {book_id} = req.params;
 
     try{
         // Find the book by ID
-        const book = await Book.findOne({id});
+        const book = await Book.findOne({book_id});
     if (!book){
         return res.status(404).json({message: "No Book Found"});
     }
@@ -110,11 +106,11 @@ export const getBook = async(req,res ) => {
 
 // Controller to handle deleting a book by its ID
 export const deleteBook = async (req,res ) =>{
-    const {id} = req.params;
+    const {book_id} = req.params;
 
     try{
         // Find and delete the book by ID
-        const book = await Book.findOneAndDelete({id});
+        const book = await Book.findOneAndDelete({book_id});
     if (!book){
         return res.status(500).json({message: "Unable To Delete"});
     }
@@ -128,7 +124,7 @@ export const deleteBook = async (req,res ) =>{
 // Controller to handle updating a book by its ID
 export const updateBook = async (req,res ) =>{
     
-    const {id} = req.params;
+    const {book_id} = req.params;
 
     try{
         // Validate the request body
@@ -156,7 +152,7 @@ export const updateBook = async (req,res ) =>{
     // Find and update the book by ID
     const options = {new: true};
     
-    book = await Book.findOneAndUpdate({id},updateFields,options);  
+    book = await Book.findOneAndUpdate({book_id},updateFields,options);  
         
     if (!book){
         return res.status(500).json({message:"Unable to update book"})
