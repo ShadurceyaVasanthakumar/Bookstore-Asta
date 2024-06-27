@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { expect } from 'chai';
-import app from '../index.js'; // Adjust the path based on your project structure
+import app from '../index.js'; 
 
 describe('GET /books', () => {
   it('should retrieve all books with pagination and filtering', async () => {
@@ -17,14 +17,14 @@ describe('GET /books', () => {
   });
 });
 
-describe('GET /books/:book_id', () => {
+describe('GET /books/:id', () => {
   it('should retrieve a specific book by ID', async () => {
     const res = await request(app)
-      .get('/books/450e3779-5f83-4020-a683-50955f2d550f'); 
+      .get('/books/e4c7809f-f096-4217-a97c-16842b78e70e'); 
 
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an('object');
-    expect(res.body.book).to.have.property('book_id', '450e3779-5f83-4020-a683-50955f2d550f');
+    expect(res.body.book).to.have.property('id', 'e4c7809f-f096-4217-a97c-16842b78e70e');
   });
 
   it('should return 404 if book ID does not exist', async () => {
@@ -36,10 +36,10 @@ describe('GET /books/:book_id', () => {
   });
 });
 
-describe('DELETE /books/:book_id', () => {
+describe('DELETE /books/:id', () => {
   it('should delete a specific book by ID', async () => {
     const res = await request(app)
-      .delete('/books/450e3779-5f83-4020-a683-50955f2d550f'); // Replace with an existing book ID
+      .delete('/books/e4c7809f-f096-4217-a97c-16842b78e70e'); 
 
     expect(res.status).to.equal(200);
     expect(res.body).to.have.property('message', 'Successfully Deleted');
@@ -54,10 +54,10 @@ describe('DELETE /books/:book_id', () => {
   });
 });
 
-describe('PUT /books/:book_id', () => {
+describe('PUT /books/:id', () => {
   it('should update a specific book by ID', async () => {
     const res = await request(app)
-      .put('/books/450e3779-5f83-4020-a683-50955f2d550f') // Replace with an existing book ID
+      .put('/books/e4c7809f-f096-4217-a97c-16842b78e70e') 
       .send({
         price: 21.99
       });
@@ -69,7 +69,7 @@ describe('PUT /books/:book_id', () => {
 
   it('should return 400 if request body is invalid', async () => {
     const res = await request(app)
-      .put('/books/450e3779-5f83-4020-a683-50955f2d550f') // Replace with an existing book ID
+      .put('/books/e4c7809f-f096-4217-a97c-16842b78e70e') 
       .send({
         // Invalid request body
       });

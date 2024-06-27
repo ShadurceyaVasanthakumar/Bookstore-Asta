@@ -12,12 +12,12 @@ router.get('/', getBooks);
 router.post('/', createBook);
 
 // Route to get details of a specific book by its ID - GET /books/:id
-router.get('/:book_id', getBook);
+router.get('/:id', getBook);
 
 // Route to delete a book by its ID - DELETE /books/:id
-router.delete('/:book_id', deleteBook);
+router.delete('/:id', deleteBook);
 
 // Route to update a book by its ID - PUT /books/:id
-router.put('/:book_id', updateBook);
+router.put('/:id', updateBook);
 
 export default router;

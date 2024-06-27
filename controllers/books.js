@@ -71,7 +71,7 @@ export const createBook = async (req,res)=>{
     
     // Create a new book instance
     const book  = new Book ({
-        book_id: uuidv4(),
+        id: uuidv4(),
         title,
         author,
         published_date: formatDate,
@@ -89,11 +89,11 @@ export const createBook = async (req,res)=>{
 
 // Controller to handle retrieving a single book by its ID
 export const getBook = async(req,res ) => {
-    const {book_id} = req.params;
+    const {id} = req.params;
 
     try{
         // Find the book by ID
-        const book = await Book.findOne({book_id});
+        const book = await Book.findOne({id});
     if (!book){
         return res.status(404).json({message: "No Book Found"});
     }
@@ -106,11 +106,11 @@ export const getBook = async(req,res ) => {
 
 // Controller to handle deleting a book by its ID
 export const deleteBook = async (req,res ) =>{
-    const {book_id} = req.params;
+    const {id} = req.params;
 
     try{
         // Find and delete the book by ID
-        const book = await Book.findOneAndDelete({book_id});
+        const book = await Book.findOneAndDelete({id});
     if (!book){
         return res.status(500).json({message: "Unable To Delete"});
     }
@@ -124,7 +124,7 @@ export const deleteBook = async (req,res ) =>{
 // Controller to handle updating a book by its ID
 export const updateBook = async (req,res ) =>{
     
-    const {book_id} = req.params;
+    const {id} = req.params;
 
     try{
         // Validate the request body
@@ -152,7 +152,7 @@ export const updateBook = async (req,res ) =>{
     // Find and update the book by ID
     const options = {new: true};
     
-    book = await Book.findOneAndUpdate({book_id},updateFields,options);  
+    book = await Book.findOneAndUpdate({id},updateFields,options);  
         
     if (!book){
         return res.status(500).json({message:"Unable to update book"})

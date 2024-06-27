@@ -83,7 +83,7 @@ The folder structure of this application is as follows:
 
 ## Book Data Structure
 Each book has the following attributes:
-- `book_id`: Unique identifier (UUID preferred)
+- `id`: Unique identifier (UUID preferred)
 - `title`: Title of the book
 - `author`: Author of the book
 - `published_date`: Date when the book was published (MM-DD-YYYY format)
@@ -133,7 +133,7 @@ GET http://localhost:5000/books/
 ### Retrieve a Specific Book by ID
 
 ```bash
-GET http://localhost:5000/books/176b1bd8-f993-4cf1-abf4-3321e84f488b
+GET http://localhost:5000/books/e4c7809f-f096-4217-a97c-16842b78e70e
 ```
 
 ### Search Books by Title
@@ -199,7 +199,7 @@ Content-Type: application/json
 ### Update a Book by ID
 
 ```bash
-PUT http://localhost:5000/books/176b1bd8-f993-4cf1-abf4-3321e84f488b
+PUT http://localhost:5000/books/e4c7809f-f096-4217-a97c-16842b78e70e
 Content-Type: application/json
 
 {
@@ -210,7 +210,7 @@ Content-Type: application/json
 ### Delete a Book by ID
 
 ```bash
-DELETE http://localhost:5000/books/176b1bd8-f993-4cf1-abf4-3321e84f488b
+DELETE http://localhost:5000/books/e4c7809f-f096-4217-a97c-16842b78e70e
 ```
 
 ## Conclusion
